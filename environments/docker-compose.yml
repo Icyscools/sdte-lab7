@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  host01:
+    image: rastasheep/ubuntu-sshd:18.04
+    ports: 
+      - "2201:22"
+      - "8081:80"
+    volumes: 
+      - "./keys/authorized_keys:/root/.ssh/authorized_keys"
+  host02:
+    image: rastasheep/ubuntu-sshd:18.04
+    ports: 
+      - "2202:22"
+      - "8082:80"
+    volumes: 
+      - "./keys/authorized_keys:/root/.ssh/authorized_keys"
+  host03:
+    image: rastasheep/ubuntu-sshd:18.04
+    ports: 
+      - "2203:22"
+      - "8083:80"
+    volumes: 
+      - "./keys/authorized_keys:/root/.ssh/authorized_keys"
