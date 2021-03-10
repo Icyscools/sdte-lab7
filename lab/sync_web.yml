@@ -1,22 +1,6 @@
-- name: Replace line in file examples
-    hosts: web
-
-    handlers:
-      - name: restart apache
-        become: yes
-        become_user: root
-        service: name=httpd state=restarted
-
-    tasks:
-    - name: "Replacing the Ansible in the content to hostname with underline"
-      become: yes
-      become_user: root
-      replace: 
-        path: /var/www/html/index.html
-        regexp: '[A|a]nisble'
-        replace: '<u>~(inventory_hostname)</u>'
-        # Matches the Start of h1 tag
-        after: '<h1\s[.|\w|=|\"|\r|\n|\s|\-|:|;]*>'
-        # Matches the End of h1 tag
-        before: '</h1>'
-        backup: yes  
+- hosts: web
+  tasks:
+    - name: "copy website"
+      copy:
+        src: site/
+        dest: /var/www/default
